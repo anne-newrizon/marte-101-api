@@ -5,8 +5,10 @@ import fs from 'fs';
 export class NodemailerProvider {
   outlookTransporter = nodemailer.createTransport({
     host: process.env.HOST_SMTP,
-    port: 587,
-    secure: false,
+    port: process.env.NODEMAILER_PORT
+      ? Number(process.env.NODEMAILER_PORT)
+      : 587,
+    secure: process.env.NODEMAILER_SECURE === 'true',
     auth: {
       user: process.env.MARTE_EMAIL,
       pass: process.env.MARTE_PASS

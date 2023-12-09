@@ -77,7 +77,8 @@ export class UserService {
       const subject = 'Redefinição de Senha';
       const variables = {
         userName: user.firstName,
-        token: token
+        token: token,
+        url: process.env.URL_RECOVER_PASSWORD
       };
       await new NodemailerProvider().sendEmail(email, subject, variables, path);
       return token;
@@ -99,7 +100,8 @@ export class UserService {
     const subject = 'Bem-vindo à Marte 101';
     const variables = {
       userName: firstName,
-      token: token
+      token: token,
+      url: process.env.URL_EMAIL_CONFIRMATION
     };
     await new NodemailerProvider().sendEmail(email, subject, variables, path);
   }
